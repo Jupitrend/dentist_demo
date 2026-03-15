@@ -909,15 +909,6 @@
       new ThermalEffectEngine(rightEl, healthyCanvas).init();
     }
 
-    // "Yeniden" text thermal overlay
-    var yenidenEl = document.getElementById('thermal-yeniden');
-    if (yenidenEl) {
-      // Wait one frame so the element has layout dimensions
-      requestAnimationFrame(function () {
-        var textCanvas = createTextCanvas('Yeniden');
-        new ThermalEffectEngine(yenidenEl, textCanvas).init();
-      });
-    }
   }
 
   if (document.readyState === 'loading') {

@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountUp();
   initActiveNavLink();
   duplicateTestimonials();
+  initTypewriter();
 });
 
 /* ── Sticky Header ───────────────────────────────────────────── */
@@ -354,3 +355,43 @@ document.addEventListener('click', e => {
 
   window.scrollTo({ top, behavior: 'smooth' });
 });
+
+/* ── Typewriter — "Yeniden" ──────────────────────────────────── */
+function initTypewriter() {
+  const el = document.getElementById('yeniden-type');
+  if (!el) return;
+
+  const word    = 'Yeniden';
+  const typeMs  = 100;   // ms per character while typing
+  const eraseMs = 60;    // ms per character while erasing
+  const pauseAfterType  = 1800; // pause when fully written
+  const pauseAfterErase = 400;  // pause when fully erased
+
+  let pos = 0;
+  let typing = true;
+
+  function tick() {
+    if (typing) {
+      pos++;
+      el.textContent = word.slice(0, pos);
+      if (pos === word.length) {
+        typing = false;
+        setTimeout(tick, pauseAfterType);
+      } else {
+        setTimeout(tick, typeMs);
+      }
+    } else {
+      pos--;
+      el.textContent = word.slice(0, pos);
+      if (pos === 0) {
+        typing = true;
+        setTimeout(tick, pauseAfterErase);
+      } else {
+        setTimeout(tick, eraseMs);
+      }
+    }
+  }
+
+  // Start after a short delay so page load feels natural
+  setTimeout(tick, 600);
+}

@@ -528,22 +528,17 @@ section { padding: 5rem 0; }
   border-radius: 2px;
 }
 
-/* ── Yeniden Thermal Overlay ───────────────────── */
-.yeniden-wrap {
-  position: relative;
+/* ── Yeniden Typewriter ────────────────────────── */
+.yeniden-cursor {
   display: inline-block;
+  color: #7ec8f7;
+  font-weight: 300;
+  animation: cur-blink 0.65s step-end infinite;
+  margin-left: 2px;
 }
-.thermal-yeniden {
-  position: absolute;
-  inset: -4px -8px;
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: screen;
-}
-.thermal-yeniden canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
+@keyframes cur-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 /* ── Before/After Diş İkonları ─────────────────── */
 .tooth-icon {
