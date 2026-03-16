@@ -107,6 +107,7 @@ p { color: var(--gray); }
   font-size: 1.05rem;
   max-width: 580px;
   line-height: 1.7;
+  margin-inline: auto;
 }
 
 .text-center { text-align: center; }
