@@ -305,27 +305,14 @@ function initCountUp() {
   counters.forEach(el => revealObserver.observe(el));
 }
 
-/* ── Active Nav Link on Scroll ───────────────────────────────── */
+/* ── Active Nav Link (multi-page) ────────────────────────────── */
 function initActiveNavLink() {
-  const sections = $$('section[id]');
-  const navLinks = $$('.nav-links a[href^="#"]');
-  if (!sections.length || !navLinks.length) return;
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
-        }
-      });
-    },
-    { rootMargin: '-40% 0px -55% 0px' }
-  );
-
-  sections.forEach(s => observer.observe(s));
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  $$('.nav-links a').forEach(link => {
+    const href = link.getAttribute('href');
+    const match = href === page || (page === '' && href === 'index.html');
+    link.classList.toggle('active', match);
+  });
 }
 
 /* ── Duplicate Testimonials for infinite scroll ──────────────── */
